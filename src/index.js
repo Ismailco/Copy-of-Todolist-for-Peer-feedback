@@ -131,15 +131,14 @@ todoInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     if (todoInput.value) {
       addTask(todoInput.value, false, todoList.todoTasks.length, todoList);
+      displayTasks();
       todoInput.value = '';
     }
   }
 });
 
 clearAllBtn.addEventListener('click', () => {
-  const filteredTasks = todoList.todoTasks.filter((item) => {
-    return item.completed === false;
-  });
+  const filteredTasks = todoList.todoTasks.filter((item) => item.completed === false);
   todoList.todoTasks = filteredTasks;
   todoList.todoTasks.forEach((task) => {
     task.index += 1;
