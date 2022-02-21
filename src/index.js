@@ -140,10 +140,12 @@ todoInput.addEventListener('keypress', (e) => {
 
 clearAllBtn.addEventListener('click', () => {
   const filteredTasks = todoList.todoTasks.filter((item) => {
-    const state = item.completed === false;
-    return state;
+    return item.completed === false;
   });
   todoList.todoTasks = filteredTasks;
-  setLocalStore(todoList.todoTasks);
+  todoList.todoTasks.forEach((task) => {
+    task.index += 1;
+  });
   displayTasks();
+  setLocalStore(todoList.todoTasks);
 });
