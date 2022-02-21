@@ -20,13 +20,15 @@ const addTask = (desctiption, completed = false, index, todoList) => {
     index,
   };
   todoList.todoTasks.push(task);
+  displayTasks();
   setLocalStore(todoList.todoTasks);
 };
 
 const removeTask = (i, todoList) => {
   todoList.todoTasks.splice(i, 1);
   todoList.todoTasks.forEach((task) => {
-    task.index = i + 1;
+    task.index = task.index - 1;
+    displayTasks();
   });
   setLocalStore(todoList.todoTasks);
 };
@@ -130,9 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 todoInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     if (todoInput.value) {
-      addTask(todoInput.value, false, todoList.todoTasks[todoList.todoTasks.length - 1], todoList);
-      displayTasks();
-
+      addTask(todoInput.value, false, todoList.todoTasks.length, todoList);
       todoInput.value = '';
     }
   }
