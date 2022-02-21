@@ -20,15 +20,13 @@ const addTask = (desctiption, completed = false, index, todoList) => {
     index,
   };
   todoList.todoTasks.push(task);
-  displayTasks();
   setLocalStore(todoList.todoTasks);
 };
 
 const removeTask = (i, todoList) => {
   todoList.todoTasks.splice(i, 1);
   todoList.todoTasks.forEach((task) => {
-    task.index = task.index - 1;
-    displayTasks();
+    task.index -= 1;
   });
   setLocalStore(todoList.todoTasks);
 };
